@@ -94,7 +94,16 @@ DATABASES = {
 #     }
 # }
 
+# Static files settings
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
+# Media files settings
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Crispy forms setting
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # Password validation
