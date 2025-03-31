@@ -34,3 +34,21 @@ class BookingForm(forms.ModelForm):
         if date < today:
             raise forms.ValidationError("You cannot book a date in the past")
         return date
+    
+    
+class RegisterForm(UserCreationForm):
+    email = forms.EmailField()
+    
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
+class TableForm(forms.ModelForm):
+    class Meta:
+        model = Table
+        fields = ['table_number', 'capacity', 'location']
+
+class MenuItemForm(forms.ModelForm):
+    class Meta:
+        model = MenuItem
+        fields = ['name', 'description', 'price', 'category', 'image', 'vegetarian', 'vegan', 'gluten_free']
