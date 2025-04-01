@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Book a Table - La Dolce Vita{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0">Book a Table</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" id="booking-form">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    
+                    <div class="mt-3" id="available-tables" style="display: none;">
+                        <h4>Available Tables</h4>
+                        <div class="row" id="table-options">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <button type="button" id="check-availability" class="btn btn-secondary">Check Availability</button>
+                        <button type="submit" id="submit-booking" class="btn btn-primary" style="display: none;">Confirm Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script></script>
+{% endblock %}
