@@ -52,8 +52,17 @@ def booking_success(request):
     return render(request, 'booking/booking_success.html')
 
 def register(request):
-    
-    return render(request, 'booking/register.html')
+    """User registration"""
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}. You can now log in.')
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
 
 def check_availability(request):
     
