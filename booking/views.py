@@ -32,9 +32,45 @@ def menu(request):
     }
     return render(request, 'booking/menu.html', context)
 
+@login_required
 def make_booking(request):
+    #booking submission
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.user = request.user
+            
+            # Get table
+            table_id = request.POST.get('table_id')
+            if not table_id:
+                messages.error(request, 'Please select a table')
+                return render(request, 'booking/booking.html', {'form': form})
+            
+            booking.table = get_object_or_404(Table, id=table_id)
+            
+            # Check if booking available
+            existing_bookings = Booking.objects.filter(
+                table=booking.table,
+                booking_date=booking.booking_date,
+                booking_time=booking.booking_time,
+                status__in=['PENDING', 'CONFIRMED']
+            )
+            
+            if existing_bookings.exists():
+                messages.error(request, 'Sorry, this table is not available.')
+                return render(request, 'booking/booking.html', {'form': form})
+            
+            # Save
+            booking.status = 'PENDING'
+            booking.save()
+            
+            messages.success(request, 'Your booking has been submitted and is pending confirmation.')
+            return redirect('booking_success')
+    else:
+        form = BookingForm()
     
-    return render(request, 'booking/booking.html')
+    return render(request, 'booking/booking.html', {'form': form})
 
 def my_bookings(request):
     
