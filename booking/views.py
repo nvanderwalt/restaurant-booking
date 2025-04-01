@@ -7,6 +7,8 @@ from django.http import JsonResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils import timezone
 from django.db.models import Count
+from django.views.decorators.http import require_POST
+from django.db.models import Q
 from .models import Booking, Table, MenuItem
 from .forms import BookingForm, RegisterForm, TableForm, MenuItemForm
 from datetime import datetime
@@ -111,9 +113,37 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
 
+@require_POST
 def check_availability(request):
+    date = request.POST.get('booking_date')
+    time = request.POST.get('booking_time')
+    party_size = int(request.POST.get('party_size', 0))
     
-    return render(request, 'booking/check_availability.html')
+    # Get all tables that can accommodate the party size
+    potential_tables = Table.objects.filter(capacity__gte=party_size)
+    
+    # Get tables that are already booked at this time
+    booked_tables = Booking.objects.filter(
+        booking_date=date,
+        booking_time=time,
+        status__in=['PENDING', 'CONFIRMED']
+    ).values_list('table_id', flat=True)
+    
+    # Filter out booked tables
+    available_tables = potential_tables.exclude(id__in=booked_tables)
+    
+    # Convert to list for JSON response
+    tables_data = [
+        {
+            'id': table.id,
+            'table_number': table.table_number,
+            'capacity': table.capacity,
+            'location': table.get_location_display()
+        }
+        for table in available_tables
+    ]
+    
+    return JsonResponse({'available_tables': tables_data})
 
 def admin_dashboard(request):
     
