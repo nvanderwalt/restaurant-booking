@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}My Bookings - La Dolce Vita{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <h2 class="mb-4">My Bookings</h2>
+        
+        {% if bookings %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Table</th>
+                            <th>Party Size</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking.booking_date }}</td>
+                            <td>{{ booking.booking_time }}</td>
+                            <td>Table {{ booking.table.table_number }} ({{ booking.table.location }})</td>
+                            <td>{{ booking.party_size }}</td>
+                            <td>
+                                {% if booking.status == 'PENDING' %}
+                                <span class="badge bg-warning text-dark">Pending</span>
+                                {% elif booking.status == 'CONFIRMED' %}
+                                <span class="badge bg-success">Confirmed</span>
+                                {% else %}
+                                <span class="badge bg-danger">Cancelled</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if booking.status != 'CANCELLED' %}
+                                    <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to cancel this booking?')">Cancel</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="alert alert-info">
+                You don't have any bookings yet. <a href="{% url 'make_booking' %}">Book a table now</a>.
+            </div>
+        {% endif %}
+        
+        <div class="mt-4">
+            <a href="{% url 'make_booking' %}" class="btn btn-primary">Make a New Booking</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
