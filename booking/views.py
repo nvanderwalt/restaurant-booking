@@ -72,9 +72,10 @@ def make_booking(request):
     
     return render(request, 'booking/booking.html', {'form': form})
 
+@login_required
 def my_bookings(request):
-    
-    return render(request, 'booking/my_bookings.html')
+    bookings = Booking.objects.filter(user=request.user).order_by('-booking_date', '-booking_time')
+    return render(request, 'booking/my_bookings.html', {'bookings': bookings})
 
 def manage_bookings(request):
     
