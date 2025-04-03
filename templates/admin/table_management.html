@@ -1,7 +1,75 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}Table Management - La Dolce Vita{% endblock %}
 
 {% block content %}
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <h2 class="mb-4">Table Management</h2>
+        
+        <div class="mb-4">
+            <a href="{% url 'add_table' %}" class="btn btn-success">Add New Table</a>
+            <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Table Number</th>
+                        <th>Capacity</th>
+                        <th>Location</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for table in tables %}
+                    <tr>
+                        <td>{{ table.table_number }}</td>
+                        <td>{{ table.capacity }}</td>
+                        <td>{{ table.get_location_display }}</td>
+                        <td>
+                            <a href="{% url 'edit_table' table.id %}" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="javascript:void(0);" class="btn btn-sm btn-danger delete-table" data-table-id="{{ table.id }}" data-table-number="{{ table.table_number }}">Delete</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">No tables found</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
+<!-- Delete Table -->
+<div class="modal fade" id="deleteTableModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete Table <span id="tableNumber"></span>?</p>
+                <p class="text-danger">This will also delete all bookings associated with this table!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="deleteTableForm" method="post" action="">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/table_management.js' %}"></script>
 {% endblock %}
