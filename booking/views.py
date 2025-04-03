@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
@@ -6,7 +5,7 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils import timezone
-from django.db.models import Count
+from django.db.models import Count, Sum
 from django.views.decorators.http import require_POST
 from django.db.models import Q
 from .models import Booking, Table, MenuItem
@@ -145,9 +144,37 @@ def check_availability(request):
     
     return JsonResponse({'available_tables': tables_data})
 
+@staff_member_required
 def admin_dashboard(request):
+    """Admin dashboard view"""
+    # booking statistics
+    pending_count = Booking.objects.filter(status='PENDING').count()
+    confirmed_count = Booking.objects.filter(status='CONFIRMED').count()
+    todays_count = Booking.objects.filter(
+        booking_date=timezone.now().date(),
+        status__in=['PENDING', 'CONFIRMED']
+    ).count()
     
-    return render(request, 'admin/dashboard.html')
+    # table statistics
+    table_count = Table.objects.count()
+    total_capacity = Table.objects.aggregate(total=Sum('capacity'))['total'] or 0
+    
+    # menu statistics
+    menu_item_count = MenuItem.objects.count()
+    
+    # recent bookings
+    recent_bookings = Booking.objects.all().order_by('-booking_date', '-booking_time')[:10]
+    
+    context = {
+        'pending_count': pending_count,
+        'confirmed_count': confirmed_count,
+        'todays_count': todays_count,
+        'table_count': table_count,
+        'total_capacity': total_capacity,
+        'menu_item_count': menu_item_count,
+        'recent_bookings': recent_bookings,
+    }
+    return render(request, 'admin/dashboard.html', context)
 
 def admin_confirm_booking(request):
     
