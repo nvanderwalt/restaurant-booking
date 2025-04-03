@@ -147,22 +147,22 @@ def check_availability(request):
 
 def admin_dashboard(request):
     
-    return render(request, 'booking/admin_dashboard.html')
+    return render(request, 'admin/dashboard.html')
 
 def admin_confirm_booking(request):
     
-    return render(request, 'booking/admin_confirm_booking.html')
+    return render(request, 'admin/confirm_booking.html')
 
 def admin_cancel_booking(request):
     
-    return render(request, 'booking/admin_cancel_booking.html')
+    return render(request, 'admin/cancel_booking.html')
 
 def table_management(request):
     
-    return render(request, 'booking/table_management.html')
+    return render(request, 'admin/table_management.html')
 
 def edit_table(request):
     
-    return render(request, 'booking/edit_table.html')
+    return render(request, 'admin/edit_table.html')
 
 
