@@ -1,12 +1,39 @@
 {% extends 'base.html' %}
 
 {% block title %}La Dolce Vita - Home{% endblock %}
-
+{% load static %}
 {% block content %}
 <div class="row">
     <div class="col-md-8 offset-md-2 text-center">
         <h1 class="display-4 mb-4">Welcome to La Dolce Vita</h1>
         <p class="lead">Experience authentic Italian cuisine in a warm and inviting atmosphere.</p>
+        
+        <div class="my-5">
+            <img src="{% static 'images/home.jpg' %}" alt="Restaurant" class="img-fluid rounded">
+
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <h3>Our Menu</h3>
+                <p>Discover our delicious dishes made with fresh, locally sourced ingredients.</p>
+                <a href="{% url 'menu' %}" class="btn btn-outline-primary">View Menu</a>
+            </div>
+            <div class="col-md-4">
+                <h3>Book a Table</h3>
+                <p>Reserve your table today and enjoy a memorable dining experience.</p>
+                <a href="{% url 'make_booking' %}" class="btn btn-primary">Make a Reservation</a>
+            </div>
+            <div class="col-md-4">
+                <h3>Opening Hours</h3>
+                <p>Monday-Friday: 11am-10pm<br>Saturday-Sunday: 10am-11pm</p>
+                <p>123 Main Street, Anytown</p>
+            </div>
+        </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/home.js' %}"></script>
 {% endblock %}
