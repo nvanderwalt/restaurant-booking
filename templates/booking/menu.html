@@ -3,5 +3,106 @@
 {% block title %}Menu - La Dolce Vita{% endblock %}
 
 {% block content %}
-
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <h2 class="mb-4 text-center">Our Menu</h2>
+        
+    
+            <!-- Starters -->
+            {% if starters %}
+            <h3 class="mt-5 mb-4">Starters</h3>
+            <div class="row">
+                {% for item in starters %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }} <span class="text-primary float-end">${{ item.price }}</span></h5>
+                            <p class="card-text">{{ item.description }}</p>
+                            <div class="mt-2">
+                                {% if item.vegetarian %}<span class="badge bg-success me-1">Vegetarian</span>{% endif %}
+                                {% if item.vegan %}<span class="badge bg-success me-1">Vegan</span>{% endif %}
+                                {% if item.gluten_free %}<span class="badge bg-warning text-dark">Gluten-Free</span>{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <!-- Main Courses -->
+            {% if mains %}
+            <h3 class="mt-5 mb-4">Main Courses</h3>
+            <div class="row">
+                {% for item in mains %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }} <span class="text-primary float-end">${{ item.price }}</span></h5>
+                            <p class="card-text">{{ item.description }}</p>
+                            <div class="mt-2">
+                                {% if item.vegetarian %}<span class="badge bg-success me-1">Vegetarian</span>{% endif %}
+                                {% if item.vegan %}<span class="badge bg-success me-1">Vegan</span>{% endif %}
+                                {% if item.gluten_free %}<span class="badge bg-warning text-dark">Gluten-Free</span>{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <!-- Desserts -->
+            {% if desserts %}
+            <h3 class="mt-5 mb-4">Desserts</h3>
+            <div class="row">
+                {% for item in desserts %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }} <span class="text-primary float-end">${{ item.price }}</span></h5>
+                            <p class="card-text">{{ item.description }}</p>
+                            <div class="mt-2">
+                                {% if item.vegetarian %}<span class="badge bg-success me-1">Vegetarian</span>{% endif %}
+                                {% if item.vegan %}<span class="badge bg-success me-1">Vegan</span>{% endif %}
+                                {% if item.gluten_free %}<span class="badge bg-warning text-dark">Gluten-Free</span>{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <!-- Drinks -->
+            {% if drinks %}
+            <h3 class="mt-5 mb-4">Drinks</h3>
+            <div class="row">
+                {% for item in drinks %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }} <span class="text-primary float-end">${{ item.price }}</span></h5>
+                            <p class="card-text">{{ item.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        
+    </div>
+</div>
 {% endblock %}
