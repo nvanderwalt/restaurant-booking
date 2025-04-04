@@ -21,4 +21,8 @@ urlpatterns = [
     path('delete-table/<int:table_id>/', views.delete_table, name='delete_table'),
 
     # Menu management
+    path('admin-menu/', views.menu_management, name='menu_management'),
+    path('admin-menu/add/', views.edit_menu_item, name='add_menu_item'),
+    path('admin-menu/edit/<int:item_id>/', views.edit_menu_item, name='edit_menu_item'),
+    path('delete-menu-item/<int:item_id>/', views.delete_menu_item, name='delete_menu_item'),
 ]
