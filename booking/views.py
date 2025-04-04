@@ -176,9 +176,19 @@ def admin_dashboard(request):
     }
     return render(request, 'admin/dashboard.html', context)
 
-def admin_confirm_booking(request):
+@staff_member_required
+def admin_confirm_booking(request, booking_id):
+    """Admin confirm booking"""
+    booking = get_object_or_404(Booking, id=booking_id)
     
-    return render(request, 'admin/confirm_booking.html')
+    if booking.status == 'PENDING':
+        booking.status = 'CONFIRMED'
+        booking.save()
+        messages.success(request, f'Booking for {booking.user.username} has been confirmed.')
+    else:
+        messages.warning(request, 'This booking cannot be confirmed.')
+    
+    return redirect('admin_dashboard')
 
 def admin_cancel_booking(request):
     
