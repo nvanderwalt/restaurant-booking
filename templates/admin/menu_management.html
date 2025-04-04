@@ -29,7 +29,163 @@
         </ul>
         
         <div class="tab-content" id="menuTabContent">
-<!-- dishes to be added  -->
+            
+            <!-- Starters -->
+            <div class="tab-pane fade show active" id="starters" role="tabpanel" aria-labelledby="starters-tab">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Dietary</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in starters %}
+                            <tr>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.description|truncatechars:100 }}</td>
+                                <td>${{ item.price }}</td>
+                                <td>
+                                    {% if item.vegetarian %}<span class="badge bg-success me-1">Vegetarian</span>{% endif %}
+                                    {% if item.vegan %}<span class="badge bg-success me-1">Vegan</span>{% endif %}
+                                    {% if item.gluten_free %}<span class="badge bg-warning text-dark">Gluten-Free</span>{% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'edit_menu_item' item.id %}" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger delete-menu-item" data-item-id="{{ item.id }}" data-item-name="{{ item.name }}">Delete</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center">No starter items found</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Mains -->
+            <div class="tab-pane fade" id="mains" role="tabpanel" aria-labelledby="mains-tab">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Dietary</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in mains %}
+                            <tr>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.description|truncatechars:100 }}</td>
+                                <td>${{ item.price }}</td>
+                                <td>
+                                    {% if item.vegetarian %}<span class="badge bg-success me-1">Vegetarian</span>{% endif %}
+                                    {% if item.vegan %}<span class="badge bg-success me-1">Vegan</span>{% endif %}
+                                    {% if item.gluten_free %}<span class="badge bg-warning text-dark">Gluten-Free</span>{% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'edit_menu_item' item.id %}" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger delete-menu-item" data-item-id="{{ item.id }}" data-item-name="{{ item.name }}">Delete</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center">No main course items found</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Desserts -->
+            <div class="tab-pane fade" id="desserts" role="tabpanel" aria-labelledby="desserts-tab">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Dietary</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in desserts %}
+                            <tr>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.description|truncatechars:100 }}</td>
+                                <td>${{ item.price }}</td>
+                                <td>
+                                    {% if item.vegetarian %}<span class="badge bg-success me-1">Vegetarian</span>{% endif %}
+                                    {% if item.vegan %}<span class="badge bg-success me-1">Vegan</span>{% endif %}
+                                    {% if item.gluten_free %}<span class="badge bg-warning text-dark">Gluten-Free</span>{% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'edit_menu_item' item.id %}" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger delete-menu-item" data-item-id="{{ item.id }}" data-item-name="{{ item.name }}">Delete</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center">No dessert items found</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Drinks -->
+            <div class="tab-pane fade" id="drinks" role="tabpanel" aria-labelledby="drinks-tab">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Dietary</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in drinks %}
+                            <tr>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.description|truncatechars:100 }}</td>
+                                <td>${{ item.price }}</td>
+                                <td>
+                                    {% if item.vegetarian %}<span class="badge bg-success me-1">Vegetarian</span>{% endif %}
+                                    {% if item.vegan %}<span class="badge bg-success me-1">Vegan</span>{% endif %}
+                                    {% if item.gluten_free %}<span class="badge bg-warning text-dark">Gluten-Free</span>{% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'edit_menu_item' item.id %}" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger delete-menu-item" data-item-id="{{ item.id }}" data-item-name="{{ item.name }}">Delete</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center">No drink items found</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
