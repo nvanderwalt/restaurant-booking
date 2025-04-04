@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Menu Management - La Dolce Vita{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <h2 class="mb-4">Menu Management</h2>
+        
+        <div class="mb-4">
+            <a href="{% url 'add_menu_item' %}" class="btn btn-success">Add New Menu Item</a>
+            <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+        
+        <ul class="nav nav-tabs mb-4" id="menuTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="starters-tab" data-bs-toggle="tab" data-bs-target="#starters" type="button" role="tab" aria-controls="starters" aria-selected="true">Starters</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="mains-tab" data-bs-toggle="tab" data-bs-target="#mains" type="button" role="tab" aria-controls="mains" aria-selected="false">Main Courses</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="desserts-tab" data-bs-toggle="tab" data-bs-target="#desserts" type="button" role="tab" aria-controls="desserts" aria-selected="false">Desserts</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="drinks-tab" data-bs-toggle="tab" data-bs-target="#drinks" type="button" role="tab" aria-controls="drinks" aria-selected="false">Drinks</button>
+            </li>
+        </ul>
+        
+        <div class="tab-content" id="menuTabContent">
+<!-- dishes to be added  -->
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/menu_management.js' %}"></script>
+{% endblock %}
