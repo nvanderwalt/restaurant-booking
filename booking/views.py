@@ -239,3 +239,49 @@ def delete_table(request, table_id):
     table.delete()
     messages.success(request, f'Table {table_number} has been deleted.')
     return redirect('table_management')
+
+#menu management functions
+@staff_member_required
+def menu_management(request):
+    """Menu management view"""
+    starters = MenuItem.objects.filter(category='STARTER')
+    mains = MenuItem.objects.filter(category='MAIN')
+    desserts = MenuItem.objects.filter(category='DESSERT')
+    drinks = MenuItem.objects.filter(category='DRINK')
+    
+    context = {
+        'starters': starters,
+        'mains': mains,
+        'desserts': desserts,
+        'drinks': drinks
+    }
+    return render(request, 'admin/menu_management.html', context)
+
+@staff_member_required
+def edit_menu_item(request, item_id=None):
+    """Add/Edit menu item view"""
+    menu_item = None
+    if item_id:
+        menu_item = get_object_or_404(MenuItem, id=item_id)
+    
+    if request.method == 'POST':
+        form = MenuItemForm(request.POST, request.FILES, instance=menu_item)
+        if form.is_valid():
+            form.save()
+            action = 'updated' if menu_item else 'added'
+            messages.success(request, f'Menu item successfully {action}.')
+            return redirect('menu_management')
+    else:
+        form = MenuItemForm(instance=menu_item)
+    
+    return render(request, 'admin/edit_menu_item.html', {'form': form, 'menu_item': menu_item})
+
+@staff_member_required
+@require_POST
+def delete_menu_item(request, item_id):
+    """Delete menu item"""
+    menu_item = get_object_or_404(MenuItem, id=item_id)
+    item_name = menu_item.name
+    menu_item.delete()
+    messages.success(request, f'Menu item "{item_name}" has been deleted.')
+    return redirect('menu_management')
