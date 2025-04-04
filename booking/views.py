@@ -210,3 +210,12 @@ def edit_table(request, table_id=None):
     return render(request, 'admin/edit_table.html', {'form': form, 'table': table})
 
 
+@staff_member_required
+@require_POST
+def delete_table(request, table_id):
+    """Delete table"""
+    table = get_object_or_404(Table, id=table_id)
+    table_number = table.table_number
+    table.delete()
+    messages.success(request, f'Table {table_number} has been deleted.')
+    return redirect('table_management')

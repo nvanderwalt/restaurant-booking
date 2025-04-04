@@ -18,4 +18,5 @@ urlpatterns = [
     path('admin-tables/edit/<int:table_id>/', views.edit_table, name='edit_table'),
     path('admin-confirm-booking/<int:booking_id>/', views.admin_confirm_booking, name='admin_confirm_booking'),
     path('admin-cancel-booking/<int:booking_id>/', views.admin_cancel_booking, name='admin_cancel_booking'),
+    path('delete-table/<int:table_id>/', views.delete_table, name='delete_table'),
 ]
