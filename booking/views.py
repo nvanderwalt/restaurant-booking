@@ -184,12 +184,29 @@ def admin_cancel_booking(request):
     
     return render(request, 'admin/cancel_booking.html')
 
+@staff_member_required
 def table_management(request):
-    
-    return render(request, 'admin/table_management.html')
+    """Table management view"""
+    tables = Table.objects.all().order_by('table_number')
+    return render(request, 'admin/table_management.html', {'tables': tables})
 
-def edit_table(request):
+@staff_member_required
+def edit_table(request, table_id=None):
+    """Add/Edit table view"""
+    table = None
+    if table_id:
+        table = get_object_or_404(Table, id=table_id)
     
-    return render(request, 'admin/edit_table.html')
+    if request.method == 'POST':
+        form = TableForm(request.POST, instance=table)
+        if form.is_valid():
+            form.save()
+            action = 'updated' if table else 'added'
+            messages.success(request, f'Table successfully {action}.')
+            return redirect('table_management')
+    else:
+        form = TableForm(instance=table)
+    
+    return render(request, 'admin/edit_table.html', {'form': form, 'table': table})
 
 
