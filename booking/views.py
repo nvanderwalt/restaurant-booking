@@ -190,9 +190,19 @@ def admin_confirm_booking(request, booking_id):
     
     return redirect('admin_dashboard')
 
-def admin_cancel_booking(request):
+@staff_member_required
+def admin_cancel_booking(request, booking_id):
+    """Admin cancel booking"""
+    booking = get_object_or_404(Booking, id=booking_id)
     
-    return render(request, 'admin/cancel_booking.html')
+    if booking.status != 'CANCELLED':
+        booking.status = 'CANCELLED'
+        booking.save()
+        messages.success(request, f'Booking for {booking.user.username} has been cancelled.')
+    else:
+        messages.info(request, 'This booking is already cancelled.')
+    
+    return redirect('admin_dashboard')
 
 @staff_member_required
 def table_management(request):
