@@ -25,4 +25,7 @@ urlpatterns = [
     path('admin-menu/add/', views.edit_menu_item, name='add_menu_item'),
     path('admin-menu/edit/<int:item_id>/', views.edit_menu_item, name='edit_menu_item'),
     path('delete-menu-item/<int:item_id>/', views.delete_menu_item, name='delete_menu_item'),
+
+    #booking management
+    path('manage-bookings/', views.manage_bookings, name='manage_bookings'),
 ]

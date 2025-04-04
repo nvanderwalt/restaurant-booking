@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Bookings - La Dolce Vita{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <h2 class="mb-4">Booking Management</h2>
+        
+        <!-- filter by date -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="get" class="row g-3">
+                    <div class="col-md-6">
+                        <label for="dateFilter" class="form-label">Filter by Date</label>
+                        <input type="date" class="form-control" id="dateFilter" name="date">
+                    </div>
+                    <div class="col-md-6 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary me-2">Filter</button>
+                        <a href="{% url 'manage_bookings' %}" class="btn btn-secondary">Show All</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Bookings Table -->
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Table</th>
+                        <th>Party Size</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking.user.get_full_name|default:booking.user.username }}</td>
+                        <td>{{ booking.booking_date }}</td>
+                        <td>{{ booking.booking_time }}</td>
+                        <td>Table {{ booking.table.table_number }} ({{ booking.table.location }})</td>
+                        <td>{{ booking.party_size }}</td>
+                        <td>
+                            {% if booking.status == 'PENDING' %}
+                            <span class="badge bg-warning text-dark">Pending</span>
+                            {% elif booking.status == 'CONFIRMED' %}
+                            <span class="badge bg-success">Confirmed</span>
+                            {% else %}
+                            <span class="badge bg-danger">Cancelled</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if booking.status == 'PENDING' %}
+                            <a href="{% url 'admin_confirm_booking' booking.id %}" class="btn btn-sm btn-success">Confirm</a>
+                            {% endif %}
+                            {% if booking.status != 'CANCELLED' %}
+                            <a href="{% url 'admin_cancel_booking' booking.id %}" class="btn btn-sm btn-danger">Cancel</a>
+                            {% endif %}
+                            
+                            <!-- View Notes Button -->
+                            {% if booking.notes %}
+                            <button type="button" class="btn btn-sm btn-info" 
+                                    onclick="alert('Notes: {{ booking.notes|escapejs }}')">
+                                View Notes
+                            </button>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="text-center">No bookings found</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="mt-4">
+            <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

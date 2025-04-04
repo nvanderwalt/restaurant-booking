@@ -17,7 +17,7 @@
                             <strong>Confirmed:</strong> {{ confirmed_count }}<br>
                             <strong>Today's bookings:</strong> {{ todays_count }}
                         </p>
-                        <a href="#bookings" class="btn btn-primary">Manage Bookings</a>
+                        <a href="{% url 'manage_bookings' %}" class="btn btn-primary">Manage Bookings</a>
                     </div>
                 </div>
             </div>

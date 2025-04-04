@@ -78,9 +78,27 @@ def my_bookings(request):
     bookings = Booking.objects.filter(user=request.user).order_by('-booking_date', '-booking_time')
     return render(request, 'booking/my_bookings.html', {'bookings': bookings})
 
+@staff_member_required
 def manage_bookings(request):
+    """managing all bookings"""
     
-    return render(request, 'booking/manage_bookings.html')
+    # Get all bookings ordered by date and time
+    bookings = Booking.objects.all().order_by('-booking_date', '-booking_time')
+    
+    # date filter
+    date_filter = request.GET.get('date')
+    if date_filter:
+        try:
+            date_obj = datetime.strptime(date_filter, '%Y-%m-%d').date()
+            bookings = bookings.filter(booking_date=date_obj)
+        except ValueError:
+            pass
+    
+    context = {
+        'bookings': bookings,
+        'today': timezone.now().date(),
+    }
+    return render(request, 'admin/booking_management.html', context)
 
 @login_required
 def cancel_booking(request, booking_id):
