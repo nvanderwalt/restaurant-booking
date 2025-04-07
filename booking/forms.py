@@ -12,6 +12,54 @@ class TimeInput(forms.TimeInput):
 
 
 class BookingForm(forms.ModelForm):
+    TIME_SLOTS = [
+        ('12:00:00', '12:00 PM'),
+        ('12:30:00', '12:30 PM'),
+        ('13:00:00', '1:00 PM'),
+        ('13:30:00', '1:30 PM'),
+        ('14:00:00', '2:00 PM'),
+        ('14:30:00', '2:30 PM'),
+        ('17:00:00', '5:00 PM'),
+        ('17:30:00', '5:30 PM'),
+        ('18:00:00', '6:00 PM'),
+        ('18:30:00', '6:30 PM'),
+        ('19:00:00', '7:00 PM'),
+        ('19:30:00', '7:30 PM'),
+        ('20:00:00', '8:00 PM'),
+        ('20:30:00', '8:30 PM'),
+        ('21:00:00', '9:00 PM'),
+    ]
+    
+    booking_time = forms.ChoiceField(choices=TIME_SLOTS, label="Booking Time")
+    
+    class Meta:
+        model = Booking
+        fields = ['booking_date', 'booking_time', 'party_size', 'notes']
+        widgets = {
+            'booking_date': DateInput(),
+            'party_size': forms.NumberInput(attrs={'min': '1', 'max': '20'}),
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set minimum date to today
+        from datetime import datetime
+        self.fields['booking_date'].widget.attrs['min'] = datetime.now().date()
+        
+    def clean_booking_date(self):
+        date = self.cleaned_data.get('booking_date')
+        from datetime import datetime
+        today = datetime.now().date()
+        if date < today:
+            raise forms.ValidationError("You cannot book a date in the past")
+        return date
+        
+    def clean_booking_time(self):
+        """Convert time slot string to a proper time object"""
+        time_str = self.cleaned_data.get('booking_time')
+        from datetime import datetime
+        time_obj = datetime.strptime(time_str, '%H:%M:%S').time()
+        return time_obj
     class Meta:
         model = Booking
         fields = ['booking_date', 'booking_time', 'party_size', 'notes']
