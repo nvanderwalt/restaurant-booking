@@ -107,6 +107,18 @@ if 'DATABASE_URL' in os.environ:
 #     }
 # }
 
+# Email configuration
+if 'SENDGRID_API_KEY' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.sendgrid.net'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = 'apikey'  # Heroku sendgrid api key
+    EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
+    DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@yourdomain.com')
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # Static files settings
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
