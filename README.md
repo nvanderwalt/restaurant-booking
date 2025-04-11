@@ -162,11 +162,25 @@ The website uses a warm, inviting color palette that conveys an elegant Italian 
 Automated tests have been implemented to verify key functionality of the application:
 ```bash
 # Example tests from test_views.py
+Found 7 test(s).
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+Ran 7 tests in 6.479s
+
+OK
+Destroying test database for alias 'default'...
 ```
 
 ### Form Testing
 ```bash
 # Example tests from test_forms.py
+Found 7 test(s).
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+Ran 7 tests in 2.222s
+
+OK
+Destroying test database for alias 'default'...
 ```
 
 ### Manual Testing
