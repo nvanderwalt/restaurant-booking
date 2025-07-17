@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 
 class TestForms(TestCase):
-    
+
     def setUp(self):
         # Create user for duplicate email testing
         User.objects.create_user(
@@ -15,14 +15,14 @@ class TestForms(TestCase):
             email='existing@example.com',
             password='password123'
         )
-        
+
         # Create table for duplicate number testing
         Table.objects.create(
             table_number=1,
             capacity=4,
             location='WINDOW'
         )
-    
+
     def test_booking_form_valid_data(self):
         """Test booking form with valid data"""
         tomorrow = timezone.now().date() + timedelta(days=1)
@@ -33,7 +33,7 @@ class TestForms(TestCase):
             'notes': 'Test booking'
         })
         self.assertTrue(form.is_valid())
-    
+
     def test_booking_form_invalid_date(self):
         """Test booking form with past date"""
         yesterday = timezone.now().date() - timedelta(days=1)
@@ -44,7 +44,7 @@ class TestForms(TestCase):
         })
         self.assertFalse(form.is_valid())
         self.assertIn('booking_date', form.errors)
-    
+
     def test_register_form_valid_data(self):
         """Test register form with valid data"""
         form = RegisterForm(data={
@@ -54,7 +54,7 @@ class TestForms(TestCase):
             'password2': 'complex_password123'
         })
         self.assertTrue(form.is_valid())
-    
+
     def test_register_form_duplicate_email(self):
         """Test register form with duplicate email"""
         form = RegisterForm(data={
@@ -65,7 +65,7 @@ class TestForms(TestCase):
         })
         self.assertFalse(form.is_valid())
         self.assertIn('email', form.errors)
-    
+
     def test_table_form_valid_data(self):
         """Test table form with valid data"""
         form = TableForm(data={
@@ -74,16 +74,16 @@ class TestForms(TestCase):
             'location': 'BALCONY'
         })
         self.assertTrue(form.is_valid())
-    
+
     def test_table_form_duplicate_number(self):
         """Test table form with duplicate number"""
         form = TableForm(data={
             'table_number': 1,  # Already exists
-            'capacity': 6, 
+            'capacity': 6,
             'location': 'BALCONY'
         })
         self.assertFalse(form.is_valid())
-    
+
     def test_menu_item_form_valid_data(self):
         """Test menu item form with valid data"""
         form = MenuItemForm(data={
