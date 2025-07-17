@@ -171,6 +171,7 @@ def check_availability(request):
 
     return JsonResponse({'available_tables': tables_data})
 
+
 @staff_member_required
 def admin_dashboard(request):
     """Admin dashboard view"""
@@ -184,13 +185,17 @@ def admin_dashboard(request):
 
     # table statistics
     table_count = Table.objects.count()
-    total_capacity = Table.objects.aggregate(total=Sum('capacity'))['total'] or 0
+    total_capacity = Table.objects.aggregate(
+        total=Sum('capacity')
+    )['total'] or 0
 
     # menu statistics
     menu_item_count = MenuItem.objects.count()
 
     # recent bookings
-    recent_bookings = Booking.objects.all().order_by('-booking_date', '-booking_time')[:10]
+    recent_bookings = Booking.objects.all().order_by(
+        '-booking_date', '-booking_time'
+    )[:10]
 
     context = {
         'pending_count': pending_count,
@@ -203,6 +208,7 @@ def admin_dashboard(request):
     }
     return render(request, 'admin/dashboard.html', context)
 
+
 @staff_member_required
 def admin_confirm_booking(request, booking_id):
     """Admin confirm booking"""
@@ -211,11 +217,14 @@ def admin_confirm_booking(request, booking_id):
     if booking.status == 'PENDING':
         booking.status = 'CONFIRMED'
         booking.save()
-        messages.success(request, f'Booking for {booking.user.username} has been confirmed.')
+        messages.success(
+            request, f'Booking for {booking.user.username} has been confirmed.'
+        )
     else:
         messages.warning(request, 'This booking cannot be confirmed.')
 
     return redirect('admin_dashboard')
+
 
 @staff_member_required
 def admin_cancel_booking(request, booking_id):
@@ -225,17 +234,21 @@ def admin_cancel_booking(request, booking_id):
     if booking.status != 'CANCELLED':
         booking.status = 'CANCELLED'
         booking.save()
-        messages.success(request, f'Booking for {booking.user.username} has been cancelled.')
+        messages.success(
+            request, f'Booking for {booking.user.username} has been cancelled.'
+        )
     else:
         messages.info(request, 'This booking is already cancelled.')
 
     return redirect('admin_dashboard')
+
 
 @staff_member_required
 def table_management(request):
     """Table management view"""
     tables = Table.objects.all().order_by('table_number')
     return render(request, 'admin/table_management.html', {'tables': tables})
+
 
 @staff_member_required
 def edit_table(request, table_id=None):
@@ -267,7 +280,8 @@ def delete_table(request, table_id):
     messages.success(request, f'Table {table_number} has been deleted.')
     return redirect('table_management')
 
-#menu management functions
+
+# menu management functions
 @staff_member_required
 def menu_management(request):
     """Menu management view"""
@@ -284,6 +298,7 @@ def menu_management(request):
     }
     return render(request, 'admin/menu_management.html', context)
 
+
 @staff_member_required
 def edit_menu_item(request, item_id=None):
     """Add/Edit menu item view"""
@@ -296,12 +311,17 @@ def edit_menu_item(request, item_id=None):
         if form.is_valid():
             form.save()
             action = 'updated' if menu_item else 'added'
-            messages.success(request, f'Menu item successfully {action}.')
+            messages.success(
+                request, f'Menu item successfully {action}.'
+            )
             return redirect('menu_management')
     else:
         form = MenuItemForm(instance=menu_item)
 
-    return render(request, 'admin/edit_menu_item.html', {'form': form, 'menu_item': menu_item})
+    return render(
+        request, 'admin/edit_menu_item.html', 
+        {'form': form, 'menu_item': menu_item}
+    )
 
 @staff_member_required
 @require_POST
