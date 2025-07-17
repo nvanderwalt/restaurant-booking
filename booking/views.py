@@ -72,10 +72,14 @@ def make_booking(request):
 
     return render(request, 'booking/booking.html', {'form': form})
 
+
 @login_required
 def my_bookings(request):
-    bookings = Booking.objects.filter(user=request.user).order_by('-booking_date', '-booking_time')
+    bookings = Booking.objects.filter(user=request.user).order_by(
+        '-booking_date', '-booking_time'
+    )
     return render(request, 'booking/my_bookings.html', {'bookings': bookings})
+
 
 @staff_member_required
 def manage_bookings(request):
@@ -99,6 +103,7 @@ def manage_bookings(request):
     }
     return render(request, 'admin/booking_management.html', context)
 
+
 @login_required
 def cancel_booking(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
@@ -112,9 +117,11 @@ def cancel_booking(request, booking_id):
 
     return redirect('my_bookings')
 
+
 def booking_success(request):
 
     return render(request, 'booking/booking_success.html')
+
 
 def register(request):
     """User registration"""
@@ -123,11 +130,14 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}. You can now log in.')
+            messages.success(
+                request, f'Account created for {username}. You can now log in.'
+            )
             return redirect('login')
     else:
         form = RegisterForm()
     return render(request, 'registration/register.html', {'form': form})
+
 
 @require_POST
 def check_availability(request):
