@@ -60,28 +60,6 @@ class BookingForm(forms.ModelForm):
         from datetime import datetime
         time_obj = datetime.strptime(time_str, '%H:%M:%S').time()
         return time_obj
-    class Meta:
-        model = Booking
-        fields = ['booking_date', 'booking_time', 'party_size', 'notes']
-        widgets = {
-            'booking_date': DateInput(),
-            'booking_time': TimeInput(),
-            'party_size': forms.NumberInput(attrs={'min': '1', 'max': '20'}),
-        }
-    
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Set minimum date to today
-        from datetime import datetime
-        self.fields['booking_date'].widget.attrs['min'] = datetime.now().date()
-        
-    def clean_booking_date(self):
-        date = self.cleaned_data.get('booking_date')
-        from datetime import datetime
-        today = datetime.now().date()
-        if date < today:
-            raise forms.ValidationError("You cannot book a date in the past")
-        return date
     
     
 class RegisterForm(UserCreationForm):
