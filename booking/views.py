@@ -1,13 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.http import JsonResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils import timezone
-from django.db.models import Count, Sum
+from django.db.models import Sum
 from django.views.decorators.http import require_POST
-from django.db.models import Q
 from .models import Booking, Table, MenuItem
 from .forms import BookingForm, RegisterForm, TableForm, MenuItemForm
 from datetime import datetime
