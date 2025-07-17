@@ -65,7 +65,9 @@ def make_booking(request):
             booking.status = 'PENDING'
             booking.save()
 
-            messages.success(request, 'Your booking has been submitted and is pending confirmation.')
+            messages.success(
+                request, 'Your booking has been submitted and is pending confirmation.'
+            )
             return redirect('booking_success')
     else:
         form = BookingForm()
@@ -111,7 +113,9 @@ def cancel_booking(request, booking_id):
     if booking.status != 'CANCELLED':
         booking.status = 'CANCELLED'
         booking.save()
-        messages.success(request, 'Your booking has been cancelled successfully.')
+        messages.success(
+            request, 'Your booking has been cancelled successfully.'
+        )
     else:
         messages.info(request, 'This booking is already cancelled.')
 
@@ -319,9 +323,10 @@ def edit_menu_item(request, item_id=None):
         form = MenuItemForm(instance=menu_item)
 
     return render(
-        request, 'admin/edit_menu_item.html', 
+        request, 'admin/edit_menu_item.html',
         {'form': form, 'menu_item': menu_item}
     )
+
 
 @staff_member_required
 @require_POST
