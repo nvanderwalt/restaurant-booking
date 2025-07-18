@@ -671,6 +671,69 @@ python manage.py createsuperuser
 - Password: (create a strong password)
 - Password confirmation: (repeat the password)
 
+#### **Step 6: Load Sample Data (Optional)**
+
+To populate the database with sample data for testing:
+
+```bash
+# Create sample tables
+python manage.py shell
+```
+
+In the Python shell:
+```python
+from booking.models import Table, MenuItem
+from django.contrib.auth.models import User
+
+# Create sample tables
+Table.objects.create(table_number=1, capacity=4, location='WINDOW')
+Table.objects.create(table_number=2, capacity=6, location='BALCONY')
+Table.objects.create(table_number=3, capacity=2, location='BAR')
+
+# Create sample menu items
+MenuItem.objects.create(
+    name='Bruschetta al Pomodoro',
+    description='Toasted bread topped with fresh tomatoes, basil, garlic, and olive oil',
+    price=6.50,
+    category='STARTER'
+)
+
+MenuItem.objects.create(
+    name='Spaghetti alla Carbonara',
+    description='Classic pasta with eggs, pancetta, pecorino cheese, and black pepper',
+    price=14.50,
+    category='MAIN'
+)
+
+exit()
+```
+
+#### **Step 7: Run the Development Server**
+
+```bash
+# Start the development server
+python manage.py runserver
+```
+
+**Expected output:**
+```
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+Month Day, Year - HH:MM:SS
+Django version X.X.X, using settings 'restaurant_booking.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+```
+
+#### **Step 8: Access the Application**
+
+Open your web browser and navigate to:
+- **Homepage:** http://127.0.0.1:8000/
+- **Admin Panel:** http://127.0.0.1:8000/admin/
+- **Menu:** http://127.0.0.1:8000/menu/
+
 ### Production Deployment (Heroku)
 
 #### **Prerequisites for Heroku Deployment**
