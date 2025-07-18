@@ -623,6 +623,54 @@ python manage.py runserver
 
 8. Access the application at http://127.0.0.1:8000/
 
+#### **Step 4: Environment Variables Setup**
+
+Create a `.env` file in the project root directory:
+
+```bash
+# Create .env file
+touch .env  # On Windows: type nul > .env
+```
+
+Add the following content to your `.env` file:
+
+```env
+# Django Settings
+SECRET_KEY=your-secret-key-here
+DEBUG=True
+DATABASE_URL=sqlite:///db.sqlite3
+
+# Optional: Email settings (for future features)
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER=your-email@gmail.com
+EMAIL_HOST_PASSWORD=your-app-password
+```
+
+**Important:** Replace `your-secret-key-here` with a secure secret key. You can generate one using:
+
+```python
+from django.core.management.utils import get_random_secret_key
+print(get_random_secret_key())
+```
+
+#### **Step 5: Database Setup**
+
+```bash
+# Run database migrations
+python manage.py migrate
+
+# Create a superuser for admin access
+python manage.py createsuperuser
+```
+
+**Follow the prompts to create your admin account:**
+- Username: (choose a username)
+- Email: (your email address)
+- Password: (create a strong password)
+- Password confirmation: (repeat the password)
+
 ### Production Deployment (Heroku)
 
 #### **Prerequisites for Heroku Deployment**
