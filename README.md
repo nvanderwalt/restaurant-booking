@@ -659,3 +659,234 @@ You can explore a live version of the application [here](https://restaurantbooki
 - Django documentation and community for development guidance
 - Unsplash for stock photography
 
+## Agile Development Process
+
+### Project Management Approach
+
+This project was developed using **Agile methodology** with **Scrum framework**, following iterative development cycles to ensure continuous improvement and stakeholder feedback integration.
+
+### Sprint Planning and Execution
+
+#### **Sprint 1: Foundation & Setup (Week 1)**
+**Duration:** 7 days  
+**Goal:** Establish project foundation and basic Django setup
+
+**User Stories:**
+1. **As a developer, I want to set up the Django project structure** so that I can begin development
+   - **Acceptance Criteria:**
+     - Django project created with proper app structure
+     - Git repository initialized with initial commit
+     - Basic settings configured for development
+     - Virtual environment set up with dependencies
+
+2. **As a developer, I want to create the database models** so that I can store booking and menu data
+   - **Acceptance Criteria:**
+     - Booking model with all required fields
+     - Table model with capacity and location
+     - MenuItem model with dietary information
+     - Models registered in Django admin
+     - Database migrations created and applied
+
+**Sprint 1 Deliverables:**
+- ✅ Django project structure
+- ✅ Database models (Booking, Table, MenuItem)
+- ✅ Admin panel registration
+- ✅ Basic URL routing
+
+#### **Sprint 2: Authentication & User Management (Week 2)**
+**Duration:** 7 days  
+**Goal:** Implement user registration and authentication system
+
+**User Stories:**
+1. **As a site visitor, I want to register for an account** so that I can make restaurant bookings
+   - **Acceptance Criteria:**
+     - Registration form with username, email, password
+     - Email validation to prevent duplicates
+     - Password confirmation field
+     - Success/error messages for user feedback
+     - Redirect to login after successful registration
+
+2. **As a registered user, I want to log in to my account** so that I can access booking features
+   - **Acceptance Criteria:**
+     - Login form with username/password
+     - Authentication validation
+     - Session management
+     - Redirect to home page after login
+     - Error handling for invalid credentials
+
+3. **As a logged-in user, I want to log out** so that I can secure my account
+   - **Acceptance Criteria:**
+     - Logout functionality
+     - Session termination
+     - Redirect to home page
+     - Clear user session data
+
+**Sprint 2 Deliverables:**
+- ✅ User registration system
+- ✅ Login/logout functionality
+- ✅ User authentication middleware
+- ✅ Form validation and error handling
+
+#### **Sprint 3: Booking System Core (Week 3)**
+**Duration:** 7 days  
+**Goal:** Implement the core booking functionality
+
+**User Stories:**
+1. **As a registered user, I want to make a restaurant booking** so that I can reserve a table
+   - **Acceptance Criteria:**
+     - Booking form with date, time, party size
+     - Date validation (no past dates)
+     - Time slot selection
+     - Party size validation (1-20 people)
+     - Table availability checking
+     - Booking confirmation with success message
+
+2. **As a registered user, I want to view my bookings** so that I can manage my reservations
+   - **Acceptance Criteria:**
+     - List of user's bookings
+     - Booking details (date, time, table, status)
+     - Sort bookings by date
+     - Booking status indicators
+
+3. **As a registered user, I want to cancel my booking** so that I can change my plans
+   - **Acceptance Criteria:**
+     - Cancel button for each booking
+     - Confirmation dialog
+     - Status update to "Cancelled"
+     - Success message after cancellation
+
+**Sprint 3 Deliverables:**
+- ✅ Booking creation system
+- ✅ Booking management interface
+- ✅ Booking cancellation functionality
+- ✅ Table availability checking
+
+#### **Sprint 4: Menu System & Admin Features (Week 4)**
+**Duration:** 7 days  
+**Goal:** Implement menu display and admin management features
+
+**User Stories:**
+1. **As a site visitor, I want to view the restaurant menu** so that I can see available dishes
+   - **Acceptance Criteria:**
+     - Menu items organized by category
+     - Dish descriptions and prices
+     - Dietary information display
+     - Responsive design for mobile viewing
+
+2. **As restaurant staff, I want to manage menu items** so that I can update the restaurant's offerings
+   - **Acceptance Criteria:**
+     - Add new menu items
+     - Edit existing menu items
+     - Delete menu items
+     - Upload images for dishes
+     - Set dietary information (vegetarian, vegan, gluten-free)
+
+3. **As restaurant staff, I want to manage restaurant tables** so that I can configure the dining layout
+   - **Acceptance Criteria:**
+     - Add new tables with capacity
+     - Edit table information
+     - Delete tables
+     - Set table locations (Window, Inside, Balcony, Bar)
+
+**Sprint 4 Deliverables:**
+- ✅ Menu display system
+- ✅ Menu item management
+- ✅ Table management system
+- ✅ Admin interface for staff
+
+#### **Sprint 5: Admin Dashboard & Polish (Week 5)**
+**Duration:** 7 days  
+**Goal:** Complete admin features and final polish
+
+**User Stories:**
+1. **As restaurant staff, I want to view a dashboard** so that I can see booking statistics
+   - **Acceptance Criteria:**
+     - Overview of pending bookings
+     - Today's booking count
+     - Total tables and menu items
+     - Recent booking list
+     - Quick action buttons
+
+2. **As restaurant staff, I want to confirm customer bookings** so that I can manage reservations
+   - **Acceptance Criteria:**
+     - View all pending bookings
+     - Confirm booking status
+     - Cancel bookings if needed
+     - Filter bookings by date
+
+3. **As a developer, I want to ensure code quality** so that the application is maintainable
+   - **Acceptance Criteria:**
+     - PEP8 compliance for all Python files
+     - Form validation for all inputs
+     - Error handling for edge cases
+     - Responsive design testing
+     - Security testing completed
+
+**Sprint 5 Deliverables:**
+- ✅ Admin dashboard with statistics
+- ✅ Booking confirmation system
+- ✅ Code quality improvements
+- ✅ Security and validation fixes
+
+### User Story Mapping
+
+#### **Epic 1: User Authentication**
+- User registration
+- User login/logout
+- Password validation
+- Email verification
+
+#### **Epic 2: Booking Management**
+- Create booking
+- View bookings
+- Cancel booking
+- Booking validation
+
+#### **Epic 3: Menu System**
+- Display menu
+- Menu item management
+- Dietary information
+- Menu categories
+
+#### **Epic 4: Admin Features**
+- Admin dashboard
+- Booking management
+- Table management
+- Menu item management
+
+#### **Epic 5: Quality Assurance**
+- Code validation
+- Security testing
+- Responsive design
+- Performance optimization
+
+### Development Timeline
+
+| Week | Sprint | Focus Area | Key Deliverables |
+|------|--------|------------|------------------|
+| 1 | Sprint 1 | Foundation | Django setup, models, admin |
+| 2 | Sprint 2 | Authentication | User registration, login/logout |
+| 3 | Sprint 3 | Booking System | Booking creation, management |
+| 4 | Sprint 4 | Menu & Admin | Menu display, admin features |
+| 5 | Sprint 5 | Polish & QA | Dashboard, validation, testing |
+
+### Agile Tools Used
+
+- **GitHub Projects:** Kanban board for sprint management
+- **GitHub Issues:** User stories and bug tracking
+- **GitHub Milestones:** Sprint planning and release management
+- **Daily Standups:** Progress tracking and blocker identification
+- **Sprint Reviews:** Demo of completed features
+- **Retrospectives:** Process improvement discussions
+
+### Definition of Done
+
+A user story is considered "Done" when:
+- ✅ All acceptance criteria are met
+- ✅ Code is written and tested
+- ✅ PEP8 compliance verified
+- ✅ Responsive design tested
+- ✅ Security considerations addressed
+- ✅ Documentation updated
+- ✅ Code reviewed and approved
+
