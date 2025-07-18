@@ -66,6 +66,144 @@ The project includes the following features:
 - Restaurant layout visualization
 - Customer reviews and ratings
 
+### Design Process
+
+#### **Phase 1: Research and Planning**
+- **Competitor Analysis:** Studied existing restaurant booking systems to understand user expectations
+- **User Research:** Identified key user personas (customers, restaurant staff)
+- **Requirements Gathering:** Defined core features based on user needs
+
+#### **Phase 2: Wireframing and Prototyping**
+- **Low-fidelity wireframes** were created to establish layout structure
+- **User flow mapping** to ensure intuitive navigation
+- **Responsive design planning** for mobile-first approach
+
+#### **Phase 3: Design System Development**
+- **Color Palette:** Warm, inviting tones for Italian restaurant theme
+- **Typography:** Clean, readable fonts for accessibility
+- **Component Library:** Consistent form elements and navigation
+
+### Wireframes
+
+#### **Homepage Wireframe**
+```
+┌─────────────────────────────────────┐
+│ Header: Logo | Nav | Login/Register │
+├─────────────────────────────────────┤
+│                                     │
+│    Welcome to La Dolce Vita        │
+│                                     │
+│    [Hero Image]                     │
+│                                     │
+│    "Experience authentic Italian    │
+│     cuisine in elegant surroundings"│
+│                                     │
+│    [Book Now Button]                │
+│    [View Menu Button]               │
+│                                     │
+├─────────────────────────────────────┤
+│ Footer: Contact | Hours | Location  │
+└─────────────────────────────────────┘
+```
+
+#### **Booking Form Wireframe**
+```
+┌─────────────────────────────────────┐
+│ Header: Logo | Nav | User Menu      │
+├─────────────────────────────────────┤
+│                                     │
+│    Book Your Table                  │
+│                                     │
+│    ┌─────────────────────────────┐   │
+│    │ Date: [Calendar Input]      │   │
+│    │ Time: [Dropdown]            │   │
+│    │ Party Size: [Number Input]  │   │
+│    │                             │   │
+│    │ [Check Availability]        │   │
+│    │                             │   │
+│    │ Available Tables:           │   │
+│    │ □ Table 1 (4 seats)        │   │
+│    │ □ Table 2 (6 seats)        │   │
+│    │                             │   │
+│    │ Notes: [Text Area]          │   │
+│    │                             │   │
+│    │ [Make Booking]              │   │
+│    └─────────────────────────────┘   │
+│                                     │
+└─────────────────────────────────────┘
+```
+
+#### **Admin Dashboard Wireframe**
+```
+┌─────────────────────────────────────┐
+│ Header: Logo | Admin Menu | Logout  │
+├─────────────────────────────────────┤
+│                                     │
+│    Restaurant Dashboard             │
+│                                     │
+│    ┌─────────┐ ┌─────────┐ ┌─────┐ │
+│    │Pending  │ │Today's  │ │Total│ │
+│    │Bookings │ │Bookings │ │Tables│ │
+│    │   5     │ │   12    │ │  8  │ │
+│    └─────────┘ └─────────┘ └─────┘ │
+│                                     │
+│    Recent Bookings:                 │
+│    ┌─────────────────────────────┐   │
+│    │ John Doe - Table 2 - 7:00PM│   │
+│    │ Jane Smith - Table 1 - 8:30│   │
+│    │ [View All Bookings]         │   │
+│    └─────────────────────────────┘   │
+│                                     │
+│    Quick Actions:                   │
+│    [Add Table] [Add Menu Item]     │
+│                                     │
+└─────────────────────────────────────┘
+```
+
+### Design Decisions
+
+#### **Layout Strategy**
+- **Mobile-First Design:** Ensures accessibility across all devices
+- **Grid System:** Bootstrap 5 grid for consistent spacing
+- **Card-Based Layout:** Information grouped in digestible cards
+- **Progressive Disclosure:** Complex features revealed as needed
+
+#### **Color Scheme Rationale**
+- **Primary Colors:** Dark tones (#212529, #343a40) for elegance
+- **Accent Colors:** Green (#28a745) for success actions, Yellow (#ffc107) for warnings
+- **Background:** Light neutral (#f8f9fa) for readability
+- **Text:** High contrast dark text for accessibility
+
+#### **Typography Choices**
+- **Headings:** Bootstrap default sans-serif for consistency
+- **Body Text:** System fonts for optimal rendering
+- **Form Labels:** Clear, descriptive labels with proper spacing
+
+#### **User Interface Elements**
+- **Buttons:** Bootstrap button styles with clear hierarchy
+- **Forms:** Crispy Forms for consistent, accessible form styling
+- **Navigation:** Collapsible navbar for mobile responsiveness
+- **Feedback:** Toast notifications for user actions
+
+#### **Responsive Design Approach**
+- **Breakpoints:** Bootstrap 5 responsive breakpoints
+- **Flexible Images:** Responsive images that scale appropriately
+- **Touch-Friendly:** Adequate button sizes for mobile interaction
+- **Content Prioritization:** Most important content visible on small screens
+
+### Accessibility Considerations
+- **Color Contrast:** WCAG AA compliant color combinations
+- **Keyboard Navigation:** All interactive elements keyboard accessible
+- **Screen Reader Support:** Proper semantic HTML structure
+- **Form Labels:** Associated labels for all form inputs
+- **Error Messages:** Clear, descriptive error feedback
+
+### Performance Optimization
+- **Image Optimization:** Compressed images for faster loading
+- **CSS Minification:** Optimized stylesheets
+- **Database Queries:** Efficient queries with select_related()
+- **Caching:** Django template caching for improved performance
+
 ### Structure
 The application follows Django's MVT (Model-View-Template) architecture and is structured as follows:
 
