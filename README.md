@@ -518,8 +518,60 @@ All Python files have been checked and comply with PEP8 standards:
 
 ## Installation
 
+### Prerequisites
 
+Before installing this application, ensure you have the following installed on your system:
 
+- **Python 3.8 or higher** - [Download Python](https://www.python.org/downloads/)
+- **Git** - [Download Git](https://git-scm.com/downloads)
+- **pip** (usually comes with Python)
+- **Virtual environment tool** (venv is included with Python 3.3+)
+
+### Local Development Setup
+
+#### **Step 1: Clone the Repository**
+
+```bash
+# Clone the repository to your local machine
+git clone https://github.com/nvanderwalt/restaurant-booking.git
+
+# Navigate to the project directory
+cd restaurant-booking
+```
+
+#### **Step 2: Create and Activate Virtual Environment**
+
+**On Windows:**
+```bash
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+venv\Scripts\activate
+```
+
+**On macOS/Linux:**
+```bash
+# Create virtual environment
+python3 -m venv venv
+
+# Activate virtual environment
+source venv/bin/activate
+```
+
+**Verify activation:** You should see `(venv)` at the beginning of your command prompt.
+
+#### **Step 3: Install Dependencies**
+
+```bash
+# Upgrade pip to latest version
+pip install --upgrade pip
+
+# Install project dependencies
+pip install -r requirements.txt
+```
+
+**Expected output:** All packages should install without errors. If you encounter any issues, see the troubleshooting section below.
 
 ### Local Development
 
@@ -571,57 +623,216 @@ python manage.py runserver
 
 8. Access the application at http://127.0.0.1:8000/
 
-### Heroku Deployment
-1. Create a Heroku account and create a new app
-2. In the Heroku dashboard, go to the "Resources" tab and add the Heroku Postgres add-on
-3. In the "Settings" tab, click "Reveal Config Vars" and add the following:
+### Production Deployment (Heroku)
 
-- SECRET_KEY: Your secret key
-- DISABLE_COLLECTSTATIC: 0
-4. Create a Procfile in your root directory with the following content:
-```bash
-web: gunicorn restaurant_booking.wsgi:application
-```
-5. Update settings.py for production:
-```bash
-import dj_database_url
+#### **Prerequisites for Heroku Deployment**
 
-DEBUG = 'DEBUG' in os.environ
+1. **Heroku Account:** Create a free account at [Heroku](https://heroku.com)
+2. **Heroku CLI:** Install the Heroku Command Line Interface
+   - **Windows:** Download from [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+   - **macOS:** `brew tap heroku/brew && brew install heroku`
+   - **Linux:** `curl https://cli-assets.heroku.com/install.sh | sh`
 
-ALLOWED_HOSTS = ['your-app-name.herokuapp.com', 'localhost']
+#### **Step 1: Prepare Your Application**
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
-}
-```
-6. Install Heroku CLI and login:
+Ensure your project is ready for deployment:
+
 ```bash
-heroku login
-```
-7. Initialize a git repository (if not already done):
-```bash
-git init
+# Check if all files are committed
+git status
+
+# Add any uncommitted changes
 git add .
-git commit -m "Initial commit"
+
+# Commit changes
+git commit -m "Prepare for Heroku deployment"
 ```
-8. Add Heroku remote:
+
+#### **Step 2: Create Heroku App**
+
 ```bash
+# Login to Heroku
+heroku login
+
+# Create a new Heroku app
+heroku create your-app-name
+
+# Add Heroku remote to your git repository
 heroku git:remote -a your-app-name
 ```
-9. Push to Heroku:
+
+#### **Step 3: Configure Environment Variables**
+
+Set up your production environment variables:
+
 ```bash
+# Set Django secret key
+heroku config:set SECRET_KEY="your-production-secret-key"
+
+# Set debug to False for production
+heroku config:set DEBUG=False
+
+# Set allowed hosts
+heroku config:set ALLOWED_HOSTS="your-app-name.herokuapp.com"
+```
+
+#### **Step 4: Add PostgreSQL Database**
+
+```bash
+# Add PostgreSQL add-on
+heroku addons:create heroku-postgresql:mini
+```
+
+#### **Step 5: Deploy to Heroku**
+
+```bash
+# Push to Heroku
+git push heroku main
+
+# Run database migrations
+heroku run python manage.py migrate
+
+# Create superuser
+heroku run python manage.py createsuperuser
+
+# Collect static files
+heroku run python manage.py collectstatic --noinput
+```
+
+#### **Step 6: Verify Deployment**
+
+```bash
+# Open your app in the browser
+heroku open
+
+# Check app logs
+heroku logs --tail
+```
+
+### Troubleshooting
+
+#### **Common Installation Issues**
+
+**Issue: `ModuleNotFoundError: No module named 'crispy_bootstrap4'`**
+```bash
+# Solution: Install the missing package
+pip install crispy-bootstrap4
+```
+
+**Issue: `django.db.utils.OperationalError: no such table`**
+```bash
+# Solution: Run migrations
+python manage.py migrate
+```
+
+**Issue: `PermissionError: [Errno 13] Permission denied`**
+```bash
+# Solution: Check file permissions or run with sudo (Linux/macOS)
+sudo python manage.py migrate
+```
+
+**Issue: Virtual environment not activating**
+```bash
+# Windows: Try using full path
+venv\Scripts\activate.bat
+
+# macOS/Linux: Check if venv exists
+ls -la venv/
+```
+
+#### **Common Heroku Deployment Issues**
+
+**Issue: `H10 App Crashed`**
+```bash
+# Check logs for specific error
+heroku logs --tail
+
+# Common causes:
+# - Missing environment variables
+# - Database migration issues
+# - Static files not collected
+```
+
+**Issue: `H14 No Web Processes Running`**
+```bash
+# Ensure Procfile exists and is correct
+echo "web: gunicorn restaurant_booking.wsgi:application" > Procfile
+
+# Commit and redeploy
+git add Procfile
+git commit -m "Add Procfile"
 git push heroku main
 ```
-10. Run migrations on Heroku:
+
+**Issue: Database connection errors**
 ```bash
+# Check database URL
+heroku config:get DATABASE_URL
+
+# Reset database if needed
+heroku pg:reset DATABASE_URL
 heroku run python manage.py migrate
 ```
-11. Create a superuser on Heroku:
+
+#### **Performance Optimization**
+
+**For Local Development:**
 ```bash
-heroku run python manage.py createsuperuser
+# Install development dependencies
+pip install django-debug-toolbar
+
+# Add to INSTALLED_APPS in settings.py
+INSTALLED_APPS = [
+    ...
+    'debug_toolbar',
+]
 ```
+
+**For Production:**
+```bash
+# Enable database connection pooling
+heroku config:set DATABASE_POOL_SIZE=20
+
+# Enable static file compression
+heroku config:set COMPRESS_ENABLED=True
+```
+
+### Security Considerations
+
+#### **Environment Variables**
+- Never commit sensitive information to version control
+- Use environment variables for all secrets
+- Regularly rotate production secret keys
+
+#### **Database Security**
+- Use strong passwords for database access
+- Enable SSL connections in production
+- Regularly backup your database
+
+#### **Application Security**
+- Keep Django and dependencies updated
+- Use HTTPS in production
+- Implement proper user authentication
+- Validate all user inputs
+
+### Maintenance
+
+#### **Regular Tasks**
+```bash
+# Update dependencies
+pip install --upgrade -r requirements.txt
+
+# Check for security vulnerabilities
+pip-audit
+
+# Backup database (if using PostgreSQL)
+heroku pg:backups:capture
+```
+
+#### **Monitoring**
+- Set up Heroku monitoring add-ons
+- Monitor application logs regularly
+- Set up error tracking (e.g., Sentry)
 
 ## Usage
 
