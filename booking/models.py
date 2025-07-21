@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator
 
 
 class Table(models.Model):
     """Model representing a table in the restaurant"""
     table_number = models.IntegerField(unique=True)
-    capacity = models.IntegerField()
+    capacity = models.PositiveIntegerField(validators=[MinValueValidator(1)])
     location = models.CharField(
         max_length=50,
         choices=[
@@ -16,6 +17,19 @@ class Table(models.Model):
             ('BAR', 'Bar Area')
         ]
     )
+
+    def clean(self):
+        """Validate table data"""
+        if self.table_number <= 0:
+            raise ValidationError("Table number must be positive.")
+        if self.capacity <= 0:
+            raise ValidationError("Table capacity must be positive.")
+        if self.capacity > 20:
+            raise ValidationError("Table capacity cannot exceed 20 people.")
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"Table {self.table_number} (seats {self.capacity})"
@@ -86,6 +100,15 @@ class MenuItem(models.Model):
     vegetarian = models.BooleanField(default=False)
     vegan = models.BooleanField(default=False)
     gluten_free = models.BooleanField(default=False)
+
+    def clean(self):
+        """Validate menu item data"""
+        if self.price <= 0:
+            raise ValidationError("Price must be positive.")
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
