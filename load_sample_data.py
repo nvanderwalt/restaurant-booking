@@ -87,6 +87,22 @@ def create_menu_items():
             'vegan': False,
             'gluten_free': False
         },
+        {
+            'name': 'Antipasto Platter',
+            'description': 'Selection of Italian cured meats, cheeses, olives, and marinated vegetables.',
+            'price': Decimal('15.99'),
+            'vegetarian': False,
+            'vegan': False,
+            'gluten_free': True
+        },
+        {
+            'name': 'Minestrone Soup',
+            'description': 'Traditional Italian vegetable soup with beans, pasta, and fresh herbs.',
+            'price': Decimal('9.50'),
+            'vegetarian': True,
+            'vegan': True,
+            'gluten_free': False
+        },
     ]
     
     # Main courses
@@ -139,6 +155,30 @@ def create_menu_items():
             'vegan': False,
             'gluten_free': True
         },
+        {
+            'name': 'Fettuccine Alfredo',
+            'description': 'Fettuccine pasta in creamy Alfredo sauce with Parmesan cheese.',
+            'price': Decimal('16.50'),
+            'vegetarian': True,
+            'vegan': False,
+            'gluten_free': False
+        },
+        {
+            'name': 'Osso Buco',
+            'description': 'Braised veal shanks in white wine and broth, served with gremolata.',
+            'price': Decimal('26.99'),
+            'vegetarian': False,
+            'vegan': False,
+            'gluten_free': True
+        },
+        {
+            'name': 'Penne Arrabbiata',
+            'description': 'Penne pasta in spicy tomato sauce with garlic and red chili peppers.',
+            'price': Decimal('15.99'),
+            'vegetarian': True,
+            'vegan': True,
+            'gluten_free': False
+        },
     ]
     
     # Desserts
@@ -174,6 +214,14 @@ def create_menu_items():
             'vegetarian': True,
             'vegan': False,
             'gluten_free': True
+        },
+        {
+            'name': 'Zeppole',
+            'description': 'Italian fried dough balls dusted with powdered sugar, served warm.',
+            'price': Decimal('7.99'),
+            'vegetarian': True,
+            'vegan': False,
+            'gluten_free': False
         },
     ]
     
@@ -223,6 +271,14 @@ def create_menu_items():
             'name': 'San Pellegrino Sparkling Water',
             'description': '750ml bottle of premium Italian sparkling water.',
             'price': Decimal('4.99'),
+            'vegetarian': True,
+            'vegan': True,
+            'gluten_free': True
+        },
+        {
+            'name': 'Limoncello',
+            'description': 'Traditional Italian lemon liqueur served chilled as a digestif.',
+            'price': Decimal('6.50'),
             'vegetarian': True,
             'vegan': True,
             'gluten_free': True
