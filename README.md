@@ -339,6 +339,28 @@ All Python files have been checked and comply with PEP8 standards:
 - ✅ `test_forms.py` - No violations
 - ✅ `test_views.py` - No violations
 
+### HTML & CSS Validation
+All pages of the website were tested using the official W3C HTML Validator and CSS Validator to ensure standards compliance and accessibility.  
+Screenshots of the validation results for each page are provided below.
+
+- **HTML Validation:**  
+  _[Insert screenshot(s) for each page after this line]_  
+
+- **CSS Validation:**  
+  _[Insert screenshot(s) for each page after this line]_  
+
+### Responsiveness Testing
+The website’s responsiveness was thoroughly tested across various devices and screen sizes using browser developer tools and real devices.  
+Screenshots demonstrating the responsive layout for desktop, tablet, and mobile views are provided below.
+
+_[Insert screenshots for each device/screen size after this line]_  
+
+### Lighthouse Testing
+The website was tested using Google Lighthouse to assess performance, accessibility, best practices, and SEO.  
+A screenshot of the Lighthouse report is provided below.
+
+_[Insert Lighthouse screenshot here]_  
+
 ### JavaScript Testing
 Frontend functionality has been tested manually and through browser developer tools:
 
