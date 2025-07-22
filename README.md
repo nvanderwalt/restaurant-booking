@@ -223,12 +223,16 @@ Navigation is intuitive, with a consistent header and footer across all pages. T
 <img src="screenshots/desktop_menupage.png" alt="Desktop Menu Page - Restaurant menu displaying food items with prices and descriptions">
 <img src="screenshots/desktop_bookingpage.png" alt="Desktop Booking Page - Table reservation form with date, time, and party size selection">
 <img src="screenshots/desktop_admindashboardpage.png" alt="Desktop Admin Dashboard - Restaurant management interface showing bookings and statistics">
+<img src="screenshots/laptop_homepage.png" alt="Laptop Homepage - Laptop view of the restaurant homepage">
 
 #### Mobile Views
 <img src="screenshots/mobile_homepage.png" alt="Mobile Homepage - Responsive mobile view of the restaurant homepage">
 <img src="screenshots/mobile_menupage.png" alt="Mobile Menu Page - Mobile-optimized menu display with touch-friendly interface">
-<img src="screenshots/mobile_bookingpage.png" alt="Mobile Booking Page - Mobile booking form with responsive design">
 <img src="screenshots/tablet_homepage.png" alt="Tablet Homepage - Tablet view showing responsive layout adaptation">
+
+#### Additional Pages
+<img src="screenshots/register_page.png" alt="Registration Page - User registration form with validation">
+<img src="screenshots/client_booking.png" alt="Client Booking - Customer booking management interface">
 
 ### Testing & Validation
 
