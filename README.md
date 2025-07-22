@@ -13,8 +13,9 @@ A comprehensive restaurant booking application that allows customers to browse m
 7. [Installation](#installation)
 8. [Usage](#usage)
 9. [Live Demo](#live-demo)
-10. [Future Features](#future-features)
-11. [Credits](#credits)
+10. [Repository](#repository)
+11. [Future Features](#future-features)
+12. [Credits](#credits)
 
 ## User Experience (UX)
 
@@ -228,6 +229,8 @@ Navigation is intuitive, with a consistent header and footer across all pages. T
 #### Mobile Views
 <img src="screenshots/mobile_homepage.png" alt="Mobile Homepage - Responsive mobile view of the restaurant homepage">
 <img src="screenshots/mobile_menupage.png" alt="Mobile Menu Page - Mobile-optimized menu display with touch-friendly interface">
+
+#### Tablet Views
 <img src="screenshots/tablet_homepage.png" alt="Tablet Homepage - Tablet view showing responsive layout adaptation">
 
 #### Additional Pages
@@ -879,6 +882,12 @@ You can explore a live version of the application [here](https://restaurantbooki
 
 **Note:** The live demo is deployed on Heroku and includes all features including user registration, booking system, and admin dashboard.
 
+## Repository
+
+The complete source code is available on [GitHub](https://github.com/nvanderwalt/restaurant-booking.git).
+
+**Repository:** [https://github.com/nvanderwalt/restaurant-booking.git](https://github.com/nvanderwalt/restaurant-booking.git)
+
 ## Future Features
 
 - Email notifications for booking confirmations and reminders
@@ -1108,7 +1117,7 @@ This project was developed using **Agile methodology** with **Scrum framework**,
 ### Agile Tools Used
 
 #### **GitHub Projects - Kanban Board**
-- **Project Board:** [Restaurant Booking System](https://github.com/yourusername/restaurant-booking/projects/1)
+- **Project Board:** [Restaurant Booking System](https://github.com/nvanderwalt/restaurant-booking/projects/1)
 - **Sprint Management:** 5 sprints with clear user stories and acceptance criteria
 - **Column Structure:** Backlog → Sprint Planning → In Progress → Review → Done
 - **Story Points:** Estimated and tracked for each user story
