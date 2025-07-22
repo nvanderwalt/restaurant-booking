@@ -5,15 +5,16 @@ A comprehensive restaurant booking application that allows customers to browse m
 ## Table of Contents
 
 1. [User Experience (UX)](#user-experience-ux)
-2. [Features](#features)
-3. [Database Design](#database-design)
-4. [Technologies Used](#technologies-used)
-5. [Testing](#testing)
-6. [Installation](#installation)
-7. [Usage](#usage)
-8. [Live Demo](#live-demo)
-9. [Future Features](#future-features)
-10. [Credits](#credits)
+2. [Screenshots](#screenshots)
+3. [Features](#features)
+4. [Database Design](#database-design)
+5. [Technologies Used](#technologies-used)
+6. [Testing](#testing)
+7. [Installation](#installation)
+8. [Usage](#usage)
+9. [Live Demo](#live-demo)
+10. [Future Features](#future-features)
+11. [Credits](#credits)
 
 ## User Experience (UX)
 
@@ -213,32 +214,42 @@ The application follows Django's MVT (Model-View-Template) architecture and is s
 
 Navigation is intuitive, with a consistent header and footer across all pages. The booking workflow guides users through the reservation process with clear steps and feedback.
 
+## Screenshots
 
+### User Interface
 
+#### Desktop Views
+<img src="screenshots/desktop_homepage.png" alt="Desktop Homepage - Restaurant booking system homepage with navigation and hero section">
+<img src="screenshots/desktop_menupage.png" alt="Desktop Menu Page - Restaurant menu displaying food items with prices and descriptions">
+<img src="screenshots/desktop_bookingpage.png" alt="Desktop Booking Page - Table reservation form with date, time, and party size selection">
+<img src="screenshots/desktop_admindashboardpage.png" alt="Desktop Admin Dashboard - Restaurant management interface showing bookings and statistics">
 
+#### Mobile Views
+<img src="screenshots/mobile_homepage.png" alt="Mobile Homepage - Responsive mobile view of the restaurant homepage">
+<img src="screenshots/mobile_menupage.png" alt="Mobile Menu Page - Mobile-optimized menu display with touch-friendly interface">
+<img src="screenshots/mobile_bookingpage.png" alt="Mobile Booking Page - Mobile booking form with responsive design">
+<img src="screenshots/tablet_homepage.png" alt="Tablet Homepage - Tablet view showing responsive layout adaptation">
 
-### Desktop Page:
+### Testing & Validation
 
-<img src="screenshots/desktop_homepage.png" alt="Home page">
-<br/>
-<img src="screenshots/desktop_menupage.png" alt="Menu page">
-<br/>
-<img src="screenshots/desktop_bookingpage.png" alt="booking page">
-<br/>
-<img src="screenshots/desktop_admindashboardpage.png" alt=Admin Dashboard page">
+#### HTML Validation Results
+<img src="screenshots/html_validate1.png" alt="HTML Validation - Homepage validation results showing no errors">
+<img src="screenshots/html_validate2.png" alt="HTML Validation - Menu page validation results showing no errors">
+<img src="screenshots/html_validate3.png" alt="HTML Validation - Booking page validation results showing no errors">
+<img src="screenshots/html_validate4.png" alt="HTML Validation - Admin dashboard validation results showing no errors">
 
-### Mobile Page:
+#### CSS Validation Results
+<img src="screenshots/css_validate1.png" alt="CSS Validation - Homepage stylesheet validation results">
+<img src="screenshots/css_validate2.png" alt="CSS Validation - Menu page stylesheet validation results">
+<img src="screenshots/css_validate3.png" alt="CSS Validation - Booking page stylesheet validation results">
+<img src="screenshots/css_validate4.png" alt="CSS Validation - Admin dashboard stylesheet validation results">
 
-<img src="screenshots/mobile_homepage.png" alt="Home page">
-<br/>
-<img src="screenshots/mobile_menupage.png" alt="Menu page">
-<br/>
-<img src="screenshots/mobile_bookingpage.png" alt="booking page">
-
+#### Performance & Accessibility Testing
+<img src="screenshots/lighthouse.png" alt="Lighthouse Report - Performance, accessibility, best practices, and SEO scores">
 
 ### Surface
 The website uses a warm, inviting color palette that conveys an elegant Italian dining experience:
-- Primary colors: Dark and mordern tones
+- Primary colors: Dark and modern tones
 - Secondary colors: Green and Yellow for navigation mobility
 
 
@@ -341,25 +352,15 @@ All Python files have been checked and comply with PEP8 standards:
 
 ### HTML & CSS Validation
 All pages of the website were tested using the official W3C HTML Validator and CSS Validator to ensure standards compliance and accessibility.  
-Screenshots of the validation results for each page are provided below.
-
-- **HTML Validation:**  
-  _[Insert screenshot(s) for each page after this line]_  
-
-- **CSS Validation:**  
-  _[Insert screenshot(s) for each page after this line]_  
+Screenshots of the validation results for each page are provided in the [Screenshots](#screenshots) section above.
 
 ### Responsiveness Testing
-The website’s responsiveness was thoroughly tested across various devices and screen sizes using browser developer tools and real devices.  
-Screenshots demonstrating the responsive layout for desktop, tablet, and mobile views are provided below.
-
-_[Insert screenshots for each device/screen size after this line]_  
+The website's responsiveness was thoroughly tested across various devices and screen sizes using browser developer tools and real devices.  
+Screenshots demonstrating the responsive layout for desktop, tablet, and mobile views are provided in the [Screenshots](#screenshots) section above.
 
 ### Lighthouse Testing
 The website was tested using Google Lighthouse to assess performance, accessibility, best practices, and SEO.  
-A screenshot of the Lighthouse report is provided below.
-
-_[Insert Lighthouse screenshot here]_  
+A screenshot of the Lighthouse report is provided in the [Screenshots](#screenshots) section above.
 
 ### JavaScript Testing
 Frontend functionality has been tested manually and through browser developer tools:
@@ -424,8 +425,60 @@ Frontend functionality has been tested manually and through browser developer to
 
 ## Installation
 
+### Prerequisites
 
+Before installing this application, ensure you have the following installed on your system:
 
+- **Python 3.8 or higher** - [Download Python](https://www.python.org/downloads/)
+- **Git** - [Download Git](https://git-scm.com/downloads)
+- **pip** (usually comes with Python)
+- **Virtual environment tool** (venv is included with Python 3.3+)
+
+### Local Development Setup
+
+#### **Step 1: Clone the Repository**
+
+```bash
+# Clone the repository to your local machine
+git clone https://github.com/nvanderwalt/restaurant-booking.git
+
+# Navigate to the project directory
+cd restaurant-booking
+```
+
+#### **Step 2: Create and Activate Virtual Environment**
+
+**On Windows:**
+```bash
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+venv\Scripts\activate
+```
+
+**On macOS/Linux:**
+```bash
+# Create virtual environment
+python3 -m venv venv
+
+# Activate virtual environment
+source venv/bin/activate
+```
+
+**Verify activation:** You should see `(venv)` at the beginning of your command prompt.
+
+#### **Step 3: Install Dependencies**
+
+```bash
+# Upgrade pip to latest version
+pip install --upgrade pip
+
+# Install project dependencies
+pip install -r requirements.txt
+```
+
+**Expected output:** All packages should install without errors. If you encounter any issues, see the troubleshooting section below.
 
 ### Local Development
 
@@ -477,58 +530,327 @@ python manage.py runserver
 
 8. Access the application at http://127.0.0.1:8000/
 
-### Heroku Deployment
-1. Create a Heroku account and create a new app
-2. In the Heroku dashboard, go to the "Resources" tab and add the Heroku Postgres add-on
-3. In the "Settings" tab, click "Reveal Config Vars" and add the following:
+#### **Step 4: Environment Variables Setup**
 
-- SECRET_KEY: Your secret key (generate a new one for production)
-- DEBUG: False (for production security)
-- DISABLE_COLLECTSTATIC: 0
-4. Create a Procfile in your root directory with the following content:
+Create a `.env` file in the project root directory:
+
 ```bash
-web: gunicorn restaurant_booking.wsgi:application
+# Create .env file
+touch .env  # On Windows: type nul > .env
 ```
-5. Update settings.py for production:
-```bash
-import dj_database_url
 
-DEBUG = 'DEBUG' in os.environ
+Add the following content to your `.env` file:
 
-ALLOWED_HOSTS = ['your-app-name.herokuapp.com', 'localhost']
+```env
+# Django Settings
+SECRET_KEY=your-secret-key-here
+DEBUG=True
+DATABASE_URL=sqlite:///db.sqlite3
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
-}
+# Optional: Email settings (for future features)
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER=your-email@gmail.com
+EMAIL_HOST_PASSWORD=your-app-password
 ```
-6. Install Heroku CLI and login:
-```bash
-heroku login
+
+**Important:** Replace `your-secret-key-here` with a secure secret key. You can generate one using:
+
+```python
+from django.core.management.utils import get_random_secret_key
+print(get_random_secret_key())
 ```
-7. Initialize a git repository (if not already done):
+
+#### **Step 5: Database Setup**
+
 ```bash
-git init
+# Run database migrations
+python manage.py migrate
+
+# Create a superuser for admin access
+python manage.py createsuperuser
+```
+
+**Follow the prompts to create your admin account:**
+- Username: (choose a username)
+- Email: (your email address)
+- Password: (create a strong password)
+- Password confirmation: (repeat the password)
+
+#### **Step 6: Load Sample Data (Optional)**
+
+To populate the database with sample data for testing:
+
+```bash
+# Create sample tables
+python manage.py shell
+```
+
+In the Python shell:
+```python
+from booking.models import Table, MenuItem
+from django.contrib.auth.models import User
+
+# Create sample tables
+Table.objects.create(table_number=1, capacity=4, location='WINDOW')
+Table.objects.create(table_number=2, capacity=6, location='BALCONY')
+Table.objects.create(table_number=3, capacity=2, location='BAR')
+
+# Create sample menu items
+MenuItem.objects.create(
+    name='Bruschetta al Pomodoro',
+    description='Toasted bread topped with fresh tomatoes, basil, garlic, and olive oil',
+    price=6.50,
+    category='STARTER'
+)
+
+MenuItem.objects.create(
+    name='Spaghetti alla Carbonara',
+    description='Classic pasta with eggs, pancetta, pecorino cheese, and black pepper',
+    price=14.50,
+    category='MAIN'
+)
+
+exit()
+```
+
+#### **Step 7: Run the Development Server**
+
+```bash
+# Start the development server
+python manage.py runserver
+```
+
+**Expected output:**
+```
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+Month Day, Year - HH:MM:SS
+Django version X.X.X, using settings 'restaurant_booking.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+```
+
+#### **Step 8: Access the Application**
+
+Open your web browser and navigate to:
+- **Homepage:** http://127.0.0.1:8000/
+- **Admin Panel:** http://127.0.0.1:8000/admin/
+- **Menu:** http://127.0.0.1:8000/menu/
+
+### Production Deployment (Heroku)
+
+#### **Prerequisites for Heroku Deployment**
+
+1. **Heroku Account:** Create a free account at [Heroku](https://heroku.com)
+2. **Heroku CLI:** Install the Heroku Command Line Interface
+   - **Windows:** Download from [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+   - **macOS:** `brew tap heroku/brew && brew install heroku`
+   - **Linux:** `curl https://cli-assets.heroku.com/install.sh | sh`
+
+#### **Step 1: Prepare Your Application**
+
+Ensure your project is ready for deployment:
+
+```bash
+# Check if all files are committed
+git status
+
+# Add any uncommitted changes
 git add .
-git commit -m "Initial commit"
+
+# Commit changes
+git commit -m "Prepare for Heroku deployment"
 ```
-8. Add Heroku remote:
+
+#### **Step 2: Create Heroku App**
+
 ```bash
+# Login to Heroku
+heroku login
+
+# Create a new Heroku app
+heroku create your-app-name
+
+# Add Heroku remote to your git repository
 heroku git:remote -a your-app-name
 ```
-9. Push to Heroku:
+
+#### **Step 3: Configure Environment Variables**
+
+Set up your production environment variables:
+
 ```bash
+# Set Django secret key
+heroku config:set SECRET_KEY="your-production-secret-key"
+
+# Set debug to False for production
+heroku config:set DEBUG=False
+
+# Set allowed hosts
+heroku config:set ALLOWED_HOSTS="your-app-name.herokuapp.com"
+```
+
+#### **Step 4: Add PostgreSQL Database**
+
+```bash
+# Add PostgreSQL add-on
+heroku addons:create heroku-postgresql:mini
+```
+
+#### **Step 5: Deploy to Heroku**
+
+```bash
+# Push to Heroku
+git push heroku main
+
+# Run database migrations
+heroku run python manage.py migrate
+
+# Create superuser
+heroku run python manage.py createsuperuser
+
+# Collect static files
+heroku run python manage.py collectstatic --noinput
+```
+
+#### **Step 6: Verify Deployment**
+
+```bash
+# Open your app in the browser
+heroku open
+
+# Check app logs
+heroku logs --tail
+```
+
+### Troubleshooting
+
+#### **Common Installation Issues**
+
+**Issue: `ModuleNotFoundError: No module named 'crispy_bootstrap4'`**
+```bash
+# Solution: Install the missing package
+pip install crispy-bootstrap4
+```
+
+**Issue: `django.db.utils.OperationalError: no such table`**
+```bash
+# Solution: Run migrations
+python manage.py migrate
+```
+
+**Issue: `PermissionError: [Errno 13] Permission denied`**
+```bash
+# Solution: Check file permissions or run with sudo (Linux/macOS)
+sudo python manage.py migrate
+```
+
+**Issue: Virtual environment not activating**
+```bash
+# Windows: Try using full path
+venv\Scripts\activate.bat
+
+# macOS/Linux: Check if venv exists
+ls -la venv/
+```
+
+#### **Common Heroku Deployment Issues**
+
+**Issue: `H10 App Crashed`**
+```bash
+# Check logs for specific error
+heroku logs --tail
+
+# Common causes:
+# - Missing environment variables
+# - Database migration issues
+# - Static files not collected
+```
+
+**Issue: `H14 No Web Processes Running`**
+```bash
+# Ensure Procfile exists and is correct
+echo "web: gunicorn restaurant_booking.wsgi:application" > Procfile
+
+# Commit and redeploy
+git add Procfile
+git commit -m "Add Procfile"
 git push heroku main
 ```
-10. Run migrations on Heroku:
+
+**Issue: Database connection errors**
 ```bash
+# Check database URL
+heroku config:get DATABASE_URL
+
+# Reset database if needed
+heroku pg:reset DATABASE_URL
 heroku run python manage.py migrate
 ```
-11. Create a superuser on Heroku:
+
+#### **Performance Optimization**
+
+**For Local Development:**
 ```bash
-heroku run python manage.py createsuperuser
+# Install development dependencies
+pip install django-debug-toolbar
+
+# Add to INSTALLED_APPS in settings.py
+INSTALLED_APPS = [
+    ...
+    'debug_toolbar',
+]
 ```
+
+**For Production:**
+```bash
+# Enable database connection pooling
+heroku config:set DATABASE_POOL_SIZE=20
+
+# Enable static file compression
+heroku config:set COMPRESS_ENABLED=True
+```
+
+### Security Considerations
+
+#### **Environment Variables**
+- Never commit sensitive information to version control
+- Use environment variables for all secrets
+- Regularly rotate production secret keys
+
+#### **Database Security**
+- Use strong passwords for database access
+- Enable SSL connections in production
+- Regularly backup your database
+
+#### **Application Security**
+- Keep Django and dependencies updated
+- Use HTTPS in production
+- Implement proper user authentication
+- Validate all user inputs
+
+### Maintenance
+
+#### **Regular Tasks**
+```bash
+# Update dependencies
+pip install --upgrade -r requirements.txt
+
+# Check for security vulnerabilities
+pip-audit
+
+# Backup database (if using PostgreSQL)
+heroku pg:backups:capture
+```
+
+#### **Monitoring**
+- Set up Heroku monitoring add-ons
+- Monitor application logs regularly
+- Set up error tracking (e.g., Sentry)
 
 ## Usage
 

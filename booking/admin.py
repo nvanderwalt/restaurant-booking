@@ -12,7 +12,9 @@ class TableAdmin(admin.ModelAdmin):
 
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'price', 'vegetarian', 'vegan', 'gluten_free')
+    list_display = (
+        'name', 'category', 'price', 'vegetarian', 'vegan', 'gluten_free'
+    )
     list_filter = ('category', 'vegetarian', 'vegan', 'gluten_free')
     search_fields = ('name', 'description')
     ordering = ('category', 'name')
@@ -21,12 +23,17 @@ class MenuItemAdmin(admin.ModelAdmin):
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('user', 'table', 'booking_date', 'booking_time', 'party_size', 'status')
-    list_filter = ('status', 'booking_date', 'booking_time', 'table__location')
+    list_display = (
+        'user', 'table', 'booking_date', 'booking_time', 'party_size',
+        'status'
+    )
+    list_filter = (
+        'status', 'booking_date', 'booking_time', 'table__location'
+    )
     search_fields = ('user__username', 'user__email', 'notes')
     ordering = ('-booking_date', '-booking_time')
     list_editable = ('status',)
     date_hierarchy = 'booking_date'
-    
+
     def get_queryset(self, request):
-        return super().get_queryset(request).select_related('user', 'table') 
+        return super().get_queryset(request).select_related('user', 'table')
