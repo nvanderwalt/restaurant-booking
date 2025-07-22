@@ -117,6 +117,11 @@ def register(request):
                 request, f'Account created for {username}. You can now log in.'
             )
             return redirect('login')
+        else:
+            # Add debugging to see form errors
+            print("Form errors:", form.errors)
+            for field, errors in form.errors.items():
+                print(f"Field {field}: {errors}")
     else:
         form = RegisterForm()
     return render(request, 'registration/register.html', {'form': form})
